@@ -71,10 +71,12 @@ namespace VehicleManager.Controllers
             List<Vehicle> oVehicles = new List<Vehicle>();
             if (String.IsNullOrEmpty(oSearch))
             {
+                ViewBag.Search = "";
                 return View(oVehicles);
             }
             else
             {
+                ViewBag.Search = oSearch;
                 var oDB = new VehicleDB.VehicleData();
                 oVehicles = oDB.SearchVehicle(oSearch);
                 return View(oVehicles);

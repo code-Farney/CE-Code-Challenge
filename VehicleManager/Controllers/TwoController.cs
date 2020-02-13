@@ -12,6 +12,7 @@ namespace VehicleManager.Controllers
         public ActionResult Index()
         {
             ViewBag.Unique = "";
+            ViewBag.Input = "";
             return View();
         }
 
@@ -50,6 +51,7 @@ namespace VehicleManager.Controllers
             #endregion
 
             ViewBag.Unique = sUnique;
+            ViewBag.Input = sValues;
             return View();
         }
     }

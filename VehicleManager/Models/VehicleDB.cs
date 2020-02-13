@@ -15,20 +15,20 @@ namespace VehicleManager.VehicleDB
             ConnectionString = ConfigurationManager.ConnectionStrings["VehicleContext"].ConnectionString;
         }
 
-        public void SaveVehicle(Vehicle vehicle)
+        public void SaveVehicle(Vehicle oVehicle)
         {
             string createQuery = String.Format("Insert into Vehicle (Owner_First, Owner_Last, Owner_Phone, Owner_Unit, Owner_Apt, Make, Model, Color) Values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}');"
-                + "Select @@Identity", vehicle.Owner_First.Trim(), vehicle.Owner_Last.Trim(), vehicle.Owner_Phone.Trim(), vehicle.Owner_Unit.Trim(), vehicle.Owner_Apt.Trim(), vehicle.Make.Trim(), vehicle.Model.Trim(), vehicle.Color.Trim());
+                + "Select @@Identity", oVehicle.Owner_First.Trim(), oVehicle.Owner_Last.Trim(), oVehicle.Owner_Phone.Trim(), oVehicle.Owner_Unit.Trim(), oVehicle.Owner_Apt.Trim(), oVehicle.Make.Trim(), oVehicle.Model.Trim(), oVehicle.Color.Trim());
 
             string updateQuery = String.Format("Update Vehicle SET Owner_First='{0}', Owner_Last = '{1}', Owner_Phone ='{2}', Owner_Unit = '{3}', Owner_Apt = '{4}', Make = '{5}', Model = '{6}', Color = '{7}' Where ID = '{8}';",
-                vehicle.Owner_First.Trim(), vehicle.Owner_Last.Trim(), vehicle.Owner_Phone.Trim(), vehicle.Owner_Unit.Trim(), vehicle.Owner_Apt.Trim(), vehicle.Make.Trim(), vehicle.Model.Trim(), vehicle.Color.Trim(), vehicle.ID);
+                oVehicle.Owner_First.Trim(), oVehicle.Owner_Last.Trim(), oVehicle.Owner_Phone.Trim(), oVehicle.Owner_Unit.Trim(), oVehicle.Owner_Apt.Trim(), oVehicle.Make.Trim(), oVehicle.Model.Trim(), oVehicle.Color.Trim(), oVehicle.ID);
 
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
 
             SqlCommand command = null;
 
-            if (vehicle.ID != Guid.Empty)
+            if (oVehicle.ID != Guid.Empty)
                 command = new SqlCommand(updateQuery, connection);
             else
                 command = new SqlCommand(createQuery, connection);
@@ -126,14 +126,14 @@ namespace VehicleManager.VehicleDB
                 {
                     Vehicle oVehicle = new Vehicle();
                     oVehicle.ID = new Guid(dataReader["ID"].ToString());
-                    oVehicle.Owner_First = dataReader["Owner_First"].ToString();
-                    oVehicle.Owner_Last = dataReader["Owner_Last"].ToString();
-                    oVehicle.Owner_Phone = dataReader["Owner_Phone"].ToString();
-                    oVehicle.Owner_Unit = dataReader["Owner_Unit"].ToString();
-                    oVehicle.Owner_Apt = dataReader["Owner_Apt"].ToString();
-                    oVehicle.Make = dataReader["Make"].ToString();
-                    oVehicle.Model = dataReader["Model"].ToString();
-                    oVehicle.Color = dataReader["Color"].ToString();
+                    oVehicle.Owner_First = dataReader["Owner_First"].ToString().Trim();
+                    oVehicle.Owner_Last = dataReader["Owner_Last"].ToString().Trim();
+                    oVehicle.Owner_Phone = dataReader["Owner_Phone"].ToString().Trim();
+                    oVehicle.Owner_Unit = dataReader["Owner_Unit"].ToString().Trim();
+                    oVehicle.Owner_Apt = dataReader["Owner_Apt"].ToString().Trim();
+                    oVehicle.Make = dataReader["Make"].ToString().Trim();
+                    oVehicle.Model = dataReader["Model"].ToString().Trim();
+                    oVehicle.Color = dataReader["Color"].ToString().Trim();
                     oVehicle.CreatedDate = Convert.ToDateTime(dataReader["CreatedDate"]);
                     result.Add(oVehicle);
                 }

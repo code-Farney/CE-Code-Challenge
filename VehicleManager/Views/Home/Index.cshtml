@@ -9,27 +9,35 @@
         <th>Owner</th>
         <th>Apartment</th>
         <th>Vehicle</th>
+        <th>Phone</th>
+        <th>Registered On</th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner_First) @Html.DisplayFor(modelItem => item.Owner_Last)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner_Unit), @Html.DisplayFor(modelItem => item.Owner_Apt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color) @Html.DisplayFor(modelItem => item.Make) @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { ID = item.ID })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Owner_First) @Html.DisplayFor(modelItem => item.Owner_Last)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Owner_Unit), @Html.DisplayFor(modelItem => item.Owner_Apt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Color) @Html.DisplayFor(modelItem => item.Make) @Html.DisplayFor(modelItem => item.Model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Owner_Phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedDate)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { ID = item.ID })
+    </td>
+</tr>
     }
 </table>

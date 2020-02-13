@@ -25,7 +25,6 @@ namespace VehicleManager.Models
 
         [Display(Name = "Unit")]
         [Required]
-        [StringLength(30, MinimumLength = 1)]
         public string Owner_Unit { get; set; }
 
         [Display(Name = "Apartment")]
