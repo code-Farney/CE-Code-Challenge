@@ -1,0 +1,37 @@
+﻿@model IEnumerable<VehicleManager.Models.Vehicle>
+@{
+    ViewBag.Title = "Search";
+}
+<h2>Search Owner</h2>
+
+<hr />
+@using (Html.BeginForm("Search", "Home", FormMethod.Get))
+{
+    <p>
+        Registration Number: @Html.TextBox("oSearch")
+        <input type="submit" value="Search" />
+    </p>
+}
+<hr />
+<table class="table">
+    <tr>
+        <th>Registration Number</th>
+        <th>Owner</th>
+        <th>Phone</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner_First) @Html.DisplayFor(modelItem => item.Owner_Last)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner_Phone)
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Challenge Two</h2>
+<h3>Input an array of numbers separated by spaces</h3>
+@using (Html.BeginForm("Index", "Two", FormMethod.Post))
+{
+    <p>
+        Input: @Html.TextBox("arrValues")
+        <input type="submit" value="Submit" />
+    </p>
+}
+<p>
+    Unique Number(s) in Array: @ViewBag.Unique
+</p>
+
